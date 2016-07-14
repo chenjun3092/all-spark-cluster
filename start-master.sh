@@ -3,7 +3,7 @@ HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
 docker stop $NAME
 docker rm $NAME
 #-p 4040:4040 -p 6066:6066 -p 7077:7077 -p 8080:8080
-docker run --name $NAME -d -t --net=host --pid=host -u 0 -p 1-65535:1-65535 --expose=1-65535 -e SPARK_MASTER_IP=$HOST_IP jupyter/all-spark-notebook /bin/bash
+docker run --name $NAME -d -t --net=host -u 0 -p 1-65535:1-65535 --expose=1-65535 -e SPARK_MASTER_IP=$HOST_IP jupyter/all-spark-notebook /bin/bash
 docker exec -d $NAME /usr/local/spark/sbin/start-master.sh
 docker exec -d $NAME tail -n 1000 -F /usr/local/spark/logs/*.out
 
