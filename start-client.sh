@@ -7,6 +7,7 @@ docker stop $NAME
 docker rm $NAME
 
 #RUN WITH THE jupyter/all-spark-notebook image
-docker run --name $NAME'-notebook' -d -t --net=host -p 8888:8888 -e SPARK_LOCAL_IP=$HOST_IP -v `pwd`:/home/$NAME -w /home/$NAME jupyter/all-spark-notebook
+#-v `pwd`:/home/$NAME -w /home/$NAME
+docker run --name $NAME -d -t --net=host -p 1-65535:1-65535 -e SPARK_LOCAL_IP=$HOST_IP  jupyter/all-spark-notebook
 
 echo "checkout http://"$HOST_IP":8888"
