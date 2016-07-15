@@ -1,7 +1,7 @@
 NAME="spark-worker"
 MASTER=$1
 if [ "$MASTER" == "" ]; then
-	echo "Please provide a master. "
+	echo "Please provide a master... "
 	echo "$0 spark://<master_ip>:7077"
 	exit 1
 fi
