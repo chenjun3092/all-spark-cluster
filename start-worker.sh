@@ -1,3 +1,5 @@
+#!/bin/bash
+
 NAME="spark-worker"
 MASTER=$1
 if [ "$MASTER" == "" ]; then

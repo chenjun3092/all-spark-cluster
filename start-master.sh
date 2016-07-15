@@ -1,3 +1,5 @@
+#!/bin/bash
+
 NAME="spark-master"
 HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
 docker stop $NAME

@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 NAME="spark-client"
 #PORT=$1
