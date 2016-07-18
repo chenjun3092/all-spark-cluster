@@ -8,8 +8,13 @@ if [ "$MASTER" == "" ]; then
 	exit 1
 fi
 
-HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
-echo "WORKER_IP: "$HOST_IP
+
+HOST_IP=$2
+if [ "$HOST_IP" == "" ]; then
+	HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
+fi
+echo "WORKER IP: "$HOST_IP
+
 docker stop $NAME
 docker rm $NAME
 __image="jupyter/all-spark-notebook"
@@ -26,4 +31,3 @@ docker run \
 	 -v $(pwd)/conf/spark-env.sh:$__path_to_spark/conf/spark-env.sh \
 	 $__image /bin/bash
 docker exec -d $NAME $__path_to_spark/sbin/start-slave.sh $MASTER
-

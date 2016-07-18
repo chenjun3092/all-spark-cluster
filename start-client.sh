@@ -2,7 +2,10 @@
 
 NAME="spark-client"
 #PORT=$1
-HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
+HOST_IP=$1
+if [ "$HOST_IP" == "" ]; then
+	HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
+fi
 docker stop $NAME
 docker rm $NAME
 
