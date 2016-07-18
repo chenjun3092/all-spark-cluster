@@ -1,6 +1,10 @@
 #!/bin/bash
 
 NAME="spark-worker"
+__image="jupyter/all-spark-notebook"
+__path_to_spark="/usr/local/spark"
+
+#pass the location of the master node
 MASTER=$1
 if [ "$MASTER" == "" ]; then
 	echo "Please provide a master... "
@@ -8,19 +12,20 @@ if [ "$MASTER" == "" ]; then
 	exit 1
 fi
 
-
+#get the public ip-address of the host machine
 HOST_IP=$2
 if [ "$HOST_IP" == "" ]; then
 	HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
 fi
 echo "WORKER IP: "$HOST_IP
 
+
+#remove existing container if running
 docker stop $NAME
 docker rm $NAME
-__image="jupyter/all-spark-notebook"
-__path_to_spark="/usr/local/spark"
 
 
+#run the container
 docker run \
 	 --name $NAME \
 	 -d -t \

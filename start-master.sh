@@ -1,6 +1,11 @@
 #!/bin/bash
 
 NAME="spark-master"
+__image="jupyter/all-spark-notebook"
+__path_to_spark="/usr/local/spark"
+
+
+#get the public ip-address of the host machine
 HOST_IP=$1
 if [ "$HOST_IP" == "" ]; then
 	HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
@@ -8,12 +13,12 @@ fi
 
 echo "MASTER IP: "$HOST_IP
 
+#remove existing container if running
 docker stop $NAME
 docker rm $NAME
-__image="jupyter/all-spark-notebook"
-__path_to_spark="/usr/local/spark"
 
 
+#run the container
 docker run \
 	--name $NAME \
 	-d -t \
