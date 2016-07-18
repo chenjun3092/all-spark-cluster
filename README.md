@@ -5,6 +5,7 @@ dockerized spark cluster based on the [jupyter/all-spark-notebook](https://githu
 This set of scripts is a bare-bones example of how to spin up a working [spark](http://spark.apache.org/) [standalone cluster](http://spark.apache.org/docs/latest/spark-standalone.html) in [docker](https://www.docker.com/).
 
 Assuming you have at least 3 ubuntu machines on the same network, seting up a production cluster is as easy as:
+
 1. get-docker.sh on each machine
 2. start-master.sh on your master node
 3. start-worker.sh spark://<master-ip>:7077 on each worker node
