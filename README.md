@@ -8,7 +8,7 @@ Assuming you have at least 3 ubuntu machines on the same network, seting up a pr
 
 1. get-docker.sh on each machine
 2. start-master.sh on your master node
-3. start-worker.sh spark://<master-ip>:7077 on each worker node
+3. start-worker.sh spark://[master-ip]:7077 on each worker node
 4. start-client.sh on the client node. *Note: A distributed cluster will not talk to a virtual client*
 
 
