@@ -8,7 +8,8 @@ __path_to_spark="/usr/local/spark"
 #get the public ip-address of the host machine
 HOST_IP=$1
 if [ "$HOST_IP" == "" ]; then
-	HOST_IP=$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
+    # if hostname --long is not fully qualified "hostname.domain.com" then you should use the host ip address	
+    HOST_IP=$(hostname --long)  #$(ip route get 8.8.8.8 | awk '{print $NF; exit}')
 fi
 
 echo "MASTER IP: "$HOST_IP
